@@ -14,10 +14,7 @@ import RandomPlanetImage from "./PlanetImages/RandomPlanetImage";
 import { generateRandomColor } from "../utils";
 
 const Planet = React.memo(function Planet({ data }) {
-	const [randomColor] = useState(
-		// should be a random vibrant color generated dynamically
-		generateRandomColor()
-	);
+	const [randomColor] = useState(generateRandomColor());
 
 	const planetNameInLowerCase = data.name.toLowerCase();
 
@@ -101,10 +98,7 @@ const Planet = React.memo(function Planet({ data }) {
 	};
 
 	return (
-		<div
-			style={{ borderColor: getBgColor(planetNameInLowerCase) }}
-			className="planet planet-entering"
-		>
+		<div className="planet planet-entering">
 			<div
 				style={{
 					backgroundColor: getBgColor(planetNameInLowerCase),

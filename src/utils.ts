@@ -1,19 +1,16 @@
 export function generateRandomColor() {
-	const minBrightness = 40; // Minimum brightness value (0 to 100)
-	const maxBrightness = 90; // Maximum brightness value (0 to 100)
-	const minSaturation = 40; // Minimum saturation value (0 to 100)
-	const maxSaturation = 80; // Maximum saturation value (0 to 100)
-
-	const randomHue = Math.floor(Math.random() * 360); // Random hue value (0 to 360)
-	const randomSaturation = Math.floor(
-		Math.random() * (maxSaturation - minSaturation + 1) + minSaturation
-	);
-	const randomBrightness = Math.floor(
-		Math.random() * (maxBrightness - minBrightness + 1) + minBrightness
-	);
-
-	// return in hsl string format
-	return `hsl(${randomHue}, ${randomSaturation}%, ${randomBrightness}%)`;
+	const colors = [
+		"#c99090",
+		"#FFB266",
+		"#A1D2FF",
+		"#FF6666",
+		"#FFCC99",
+		"#FFCC66",
+		"#66b0ff",
+		"#66CCFF",
+		"#9c95b0",
+	];
+	return colors[Math.floor(Math.random() * colors.length)];
 }
 
 function getPlanetColors(planetType) {
@@ -143,8 +140,6 @@ export function generateComplementaryColors() {
 	];
 	const planetType =
 		planetTypes[Math.floor(Math.random() * planetTypes.length)];
-
-	console.log(planetType);
 
 	return getPlanetColors(planetType);
 }

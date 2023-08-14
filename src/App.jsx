@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Planet from "./components/Planet";
 import Stars from "./components/Stars";
@@ -107,11 +107,12 @@ const planetsInSolarSystem = [
 	},
 ];
 
+const limit = 30;
+
 function App() {
 	const [planets, setPlanets] = useState(planetsInSolarSystem);
 	const [isLoading, setIsLoading] = useState(false);
 	const [offset, setOffset] = useState(0);
-	const universeRef = useRef(null);
 
 	const loadMorePlanets = async () => {
 		setIsLoading(true);
@@ -122,7 +123,7 @@ function App() {
 			);
 			const data = await response.json();
 			setPlanets([...planets, ...data]);
-			setOffset(offset + 30);
+			setOffset((previousOffset) => previousOffset + limit);
 		} catch (error) {
 			console.error(error);
 		}
@@ -134,7 +135,7 @@ function App() {
 			const distanceFromBottom =
 				document.documentElement.scrollHeight -
 				(window.pageYOffset + window.innerHeight);
-			if (distanceFromBottom > 50 || isLoading) return; // Using 100px as a buffer to start loading before we hit the very bottom.
+			if (distanceFromBottom > 50 || isLoading) return; // Using 50px as a buffer to start loading before we hit the very bottom.
 
 			await loadMorePlanets();
 		};
@@ -144,7 +145,7 @@ function App() {
 	}, [isLoading]);
 
 	return (
-		<div className="universe" ref={universeRef}>
+		<div className="universe">
 			<div className="stars">
 				<Stars />
 			</div>
