@@ -11,12 +11,19 @@ import Uranus from "./PlanetImages/Uranus";
 import Neptune from "./PlanetImages/Neptune";
 import Pluto from "./PlanetImages/Pluto";
 import RandomPlanetImage from "./PlanetImages/RandomPlanetImage";
-import { generateRandomColor } from "../utils";
+import {
+	generateRandomColor,
+	getMass,
+	getOrbitalPeriodInYears,
+	getRadiusInKilometers,
+	getTemperature,
+} from "../utils";
 
 const Planet = React.memo(function Planet({ data }) {
 	const [randomColor] = useState(generateRandomColor());
 
 	const planetNameInLowerCase = data.name.toLowerCase();
+	const notAvailable = "N/A";
 
 	const getImage = (name) => {
 		switch (name) {
@@ -68,35 +75,6 @@ const Planet = React.memo(function Planet({ data }) {
 		}
 	};
 
-	const getMass = (mass) => {
-		const earthMassInKg = 1.898e27;
-		const massInKg = mass * earthMassInKg;
-
-		const [coefficient, exponent] = massInKg.toExponential().split("e");
-		const formattedResult = `${parseFloat(coefficient)
-			.toFixed(3)
-			.slice(0, 4)} x 10^${parseInt(exponent)}`;
-
-		return formattedResult;
-	};
-
-	const getRadiusInKilometers = (radius) => {
-		const earthRadiusInKm = 6371;
-		const radiusInKm = radius * earthRadiusInKm;
-		return radiusInKm.toFixed(1);
-	};
-
-	const getOrbitalPeriodInYears = (orbitalPeriod) => {
-		const earthDaysInYear = 365.2;
-		const orbitalPeriodInYears = orbitalPeriod / earthDaysInYear;
-		return orbitalPeriodInYears.toFixed(orbitalPeriodInYears === 1 ? 0 : 1);
-	};
-
-	const getTemperature = (temperature) => {
-		const temperatureInCelcius = (temperature - 273.15).toFixed(0);
-		return temperatureInCelcius;
-	};
-
 	return (
 		<div className="planet planet-entering">
 			<div
@@ -111,13 +89,13 @@ const Planet = React.memo(function Planet({ data }) {
 				<h2 className="planet-name">{data.name}</h2>
 				<p className="planet-fact">
 					<span className="planet-fact-title">Mass:</span>{" "}
-					{data.mass ? `${getMass(data.mass)} kg` : "N/A"}
+					{data.mass ? `${getMass(data.mass)} kg` : notAvailable}
 				</p>
 				<p className="planet-fact">
 					<span className="planet-fact-title">Radius:</span>{" "}
 					{data.radius
 						? `${getRadiusInKilometers(data.radius)} km`
-						: "N/A"}
+						: notAvailable}
 				</p>
 				<p className="planet-fact">
 					<span className="planet-fact-title">Orbital Period:</span>{" "}
@@ -125,13 +103,13 @@ const Planet = React.memo(function Planet({ data }) {
 						? `${getOrbitalPeriodInYears(data.orbitalPeriod)} year${
 								data.period === 365.2 ? "" : "s"
 						  }`
-						: "N/A"}
+						: notAvailable}
 				</p>
 				<p className="planet-fact">
 					<span className="planet-fact-title">Temperature:</span>{" "}
 					{data.temperature
 						? `${getTemperature(data.temperature)}°C`
-						: "N/A"}
+						: notAvailable}
 				</p>
 			</div>
 		</div>

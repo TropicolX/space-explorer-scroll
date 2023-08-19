@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Planet from "./components/Planet";
 import Stars from "./components/Stars";
@@ -94,32 +94,19 @@ const planetsInSolarSystem = [
 		host_star_mass: 1,
 		host_star_temperature: 6000,
 	},
-	{
-		name: "Pluto",
-		mass: 0.000007,
-		radius: 0.0166,
-		period: 90560,
-		semi_major_axis: 39.48,
-		temperature: 44,
-		distance_light_year: 0.000559,
-		host_star_mass: 1,
-		host_star_temperature: 6000,
-	},
 ];
 
 const limit = 30;
 
 function App() {
 	const [planets, setPlanets] = useState(planetsInSolarSystem);
-	const [isLoading, setIsLoading] = useState(false);
 	const [offset, setOffset] = useState(0);
+	const loaderRef = useRef(null);
 
 	const loadMorePlanets = async () => {
-		setIsLoading(true);
-
 		try {
 			const response = await fetch(
-				`http://localhost:3000/planets?offset=${offset}`
+				`https://planets-api-rho.vercel.app/api/planets?offset=${offset}`
 			);
 			const data = await response.json();
 			setPlanets([...planets, ...data]);
@@ -127,22 +114,23 @@ function App() {
 		} catch (error) {
 			console.error(error);
 		}
-		setIsLoading(false);
 	};
 
 	useEffect(() => {
-		const handleScroll = async () => {
-			const distanceFromBottom =
-				document.documentElement.scrollHeight -
-				(window.pageYOffset + window.innerHeight);
-			if (distanceFromBottom > 50 || isLoading) return; // Using 50px as a buffer to start loading before we hit the very bottom.
+		const observer = new IntersectionObserver((entries) => {
+			const firstEntry = entries[0];
+			if (firstEntry.isIntersecting) {
+				// Load more planets when the loader is visible
+				loadMorePlanets();
+			}
+		});
+		if (loaderRef.current) {
+			observer.observe(loaderRef.current);
+		}
 
-			await loadMorePlanets();
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [isLoading]);
+		// Clean up the observer on component unmount
+		return () => observer.disconnect();
+	}, [offset]);
 
 	return (
 		<div className="universe">
@@ -156,7 +144,7 @@ function App() {
 					<Planet key={planet.name} data={planet} />
 				))}
 			</div>
-			{isLoading && <div className="spinner"></div>}
+			<div ref={loaderRef} className="spinner"></div>
 		</div>
 	);
 }

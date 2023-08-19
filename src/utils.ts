@@ -143,3 +143,32 @@ export function generateComplementaryColors() {
 
 	return getPlanetColors(planetType);
 }
+
+export const getMass = (mass) => {
+	const earthMassInKg = 1.898e27;
+	const massInKg = mass * earthMassInKg;
+
+	const [coefficient, exponent] = massInKg.toExponential().split("e");
+	const formattedResult = `${parseFloat(coefficient)
+		.toFixed(3)
+		.slice(0, 4)} x 10^${parseInt(exponent)}`;
+
+	return formattedResult;
+};
+
+export const getRadiusInKilometers = (radius) => {
+	const earthRadiusInKm = 6371;
+	const radiusInKm = radius * earthRadiusInKm;
+	return radiusInKm.toFixed(1);
+};
+
+export const getOrbitalPeriodInYears = (orbitalPeriod) => {
+	const earthDaysInYear = 365.2;
+	const orbitalPeriodInYears = orbitalPeriod / earthDaysInYear;
+	return orbitalPeriodInYears.toFixed(orbitalPeriodInYears === 1 ? 0 : 1);
+};
+
+export const getTemperature = (temperature) => {
+	const temperatureInCelcius = (temperature - 273.15).toFixed(0);
+	return temperatureInCelcius;
+};

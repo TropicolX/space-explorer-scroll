@@ -59,6 +59,7 @@
 
 .planet-image {
 	min-width: 118px;
+	max-width: 161px;
 	height: 161px;
 	border-top-left-radius: 12px;
 	border-bottom-left-radius: 12px;
@@ -80,7 +81,7 @@
 	color: #ffffff;
 	font-size: 18px;
 	font-weight: 700;
-	width: 203px;
+	width: 170px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -128,4 +129,38 @@
 
 .planet-entering {
 	animation: fadeInUp 0.5s forwards;
+}
+
+@media (max-width: 320px) {
+	.planet-name {
+		width: 120px;
+	}
+}
+
+@media (max-width: 280px) {
+	.planet-image {
+		min-width: 80px;
+		max-width: 80px;
+	}
+}
+
+@media (min-width: 768px) {
+	.title,
+	.subheading {
+		text-align: center;
+		margin: 0 auto;
+	}
+
+	.subheading {
+		margin-top: 20px;
+	}
+
+	.planets {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		max-width: 1024px;
+		margin: 0 auto;
+		column-gap: 50px;
+		margin-top: 35px;
+	}
 }
