@@ -1,4 +1,3 @@
-import Planet from "./components/Planet";
 import Stars from "./components/Stars";
 
 import "./App.css";
