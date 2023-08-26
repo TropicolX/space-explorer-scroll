@@ -3,6 +3,7 @@
 	color: #ffffff;
 	position: relative;
 	padding: 81px 20px 40px 20px;
+	min-height: 100vh;
 }
 
 .stars {
