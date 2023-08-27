@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import Planet from "./components/Planet";
 import Stars from "./components/Stars";
@@ -103,7 +103,7 @@ function App() {
 	const [offset, setOffset] = useState(0);
 	const loaderRef = useRef(null);
 
-	const loadMorePlanets = async () => {
+	const loadMorePlanets = useCallback(async () => {
 		try {
 			const response = await fetch(
 				`https://planets-api-rho.vercel.app/api/planets?offset=${offset}`
@@ -114,7 +114,7 @@ function App() {
 		} catch (error) {
 			console.error(error);
 		}
-	};
+	}, [offset, planets]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver((entries) => {
@@ -130,7 +130,7 @@ function App() {
 
 		// Clean up the observer on component unmount
 		return () => observer.disconnect();
-	}, [offset]);
+	}, [loadMorePlanets]);
 
 	return (
 		<div className="universe">
