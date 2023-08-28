@@ -1,8 +1,64 @@
-# React + Vite
+# Infinite Scrolling in React: A Practical Guide 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Explore the magic of infinite scroll in React by embarking on a cosmic journey through a card-based planet explorer. Harness the power of React and Intersection Observer API to create an interactive experience.
 
-Currently, two official plugins are available:
+<p align="center">
+    <a href="https://tropicolx.hashnode.dev/infinite-scrolling-in-react-a-practical-guide" style="display: block;" align="center">
+        <img src="./public/thumbnail.png" alt="Infinite Scrolling in React: A Practical Guide" width="60%" />
+        <p>Click to Read!</p>
+    </a>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
+
+**Table of Contents**:
+
+- [Introduction ✊](#introduction)
+- [Getting Started ⚡](#getting-started)
+- [License 🪪](#license)
+- [Contributing 📥](#contributing)
+
+---
+
+## Introduction
+
+This repository is part of the [Infinite Scrolling in React: A Practical Guide](https://blog.kunalkeshan.dev/learn-how-to-use-context-and-reducer-hooks-in-reactjs-by-creating-a-global-snackbar) article and illustrates the following.
+
+- Implementing Infinite Scroll using the Intersection Observer API by building a planet explorer
+- Discuss potential pitfalls and optimizations for infinite scrolling in React
+
+## Getting Started
+
+- Fork or clone this repository.
+
+```bash
+git clone https://github.com/TropicolX/space-explorer-scroll.git
+```
+
+- Using `npm` or `yarn` install the dependencies.
+
+```bash
+# Using npm
+npm install
+
+# Using yarn
+yarn install
+```
+
+- Start the application
+
+```bash
+# Using npm
+npm run dev
+
+# Using yarn
+yarn run dev
+```
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+## Contributing
+
+You're free to contribute and make changes required to this project. Make sure to follow the [Getting Started](#getting-started) before making any changes.
