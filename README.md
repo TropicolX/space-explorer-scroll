@@ -22,7 +22,7 @@ Explore the magic of infinite scroll in React by embarking on a cosmic journey t
 
 ## Introduction
 
-This repository is part of the [Infinite Scrolling in React: A Practical Guide](https://blog.kunalkeshan.dev/learn-how-to-use-context-and-reducer-hooks-in-reactjs-by-creating-a-global-snackbar) article and illustrates the following.
+This repository is part of the [Infinite Scrolling in React: A Practical Guide](https://tropicolx.hashnode.dev/infinite-scrolling-in-react-a-practical-guide) article and illustrates the following.
 
 - Implementing Infinite Scroll using the Intersection Observer API by building a planet explorer
 - Discuss potential pitfalls and optimizations for infinite scrolling in React
